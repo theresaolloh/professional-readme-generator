@@ -1,7 +1,7 @@
 import inquirer from "inquirer"
 import fs from "fs"
 
-import generatorMarkdown from './generateMarkdown';
+import generateMarkdown from './generateMarkdown';
 
 //list of questions for thr user to fill
 const questions = [
@@ -57,6 +57,7 @@ const questions = [
     },
 ];
 
+//this function writes the readme file
 function generateREADME(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
         if (err) {
@@ -67,11 +68,11 @@ function generateREADME(fileName, data) {
     });
 }
 
-//the 
+//this function initializes the app
 function init() {
     inquirer.prompt(questions)
         .then(function (data) {
-            writeToFile("README.md", generatorMarkdown(data));
+            writeFile("README.md", generateMarkdown(data));
             console.log(data)
         })
 }
